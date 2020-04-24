@@ -22,15 +22,11 @@
 <distributionManagement>
   
     <repository>
-      <id>nexus-releases</id>
+      <id>simpleapp-release</id>
       <name>Nexus Releases</name>
-      <url>http://10.0.1.177:8081/repository/simpleapp-release</url>
+      <url>http://10.0.1.177:8081/repository/simpleapp-release/</url>
     </repository>
-    <snapshotRepository>
-      <id>SAMPLE-SNAP</id>
-      <name>Nexus Snapnexus-releasesshot</name>
-      <url>http://10.0.1.177:8081/repository/simpleapp-release</url>
-    </snapshotRepository>
+    
     <site>
       <id>deployment</id>
       <name>Nexus Sites</name>
