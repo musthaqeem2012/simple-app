@@ -24,12 +24,12 @@
     <repository>
       <id>nexus-releases</id>
       <name>Nexus Releases</name>
-      <url>http://3.15.26.218:8081/repository/SAMPLE-RELEASE/</url>
+      <url>http://10.0.1.177:8081/repository/simpleapp-release</url>
     </repository>
     <snapshotRepository>
       <id>SAMPLE-SNAP</id>
       <name>Nexus Snapnexus-releasesshot</name>
-      <url>http://3.15.26.218:8081/repository/SAMPLE-SNAP/</url>
+      <url>http://10.0.1.177:8081/repository/simpleapp-release</url>
     </snapshotRepository>
     <site>
       <id>deployment</id>
