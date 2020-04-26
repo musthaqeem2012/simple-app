@@ -19,5 +19,22 @@
 		</dependency>
 
 	</dependencies>
-
+	<distributionManagement>
+  
+    <repository>
+      <id>simpleapp-release</id>
+      <name>Nexus Releases</name>
+      <url>http://3.133.158.171:8081/repository/simpleapp-release/</url>
+    </repository>
+    <snapshotRepository>
+      <id>SAMPLE-SNAP</id>
+      <name>Nexus Snapnexus-releasesshot</name>
+      <url>http://3.133.158.171:8081/repository/SAMPLE-SNAP/</url>
+    </snapshotRepository>
+    <site>
+      <id>deployment</id>
+      <name>Nexus Sites</name>
+      <url>dav:http://localhost:8081/nexus/content/sites/site/</url>
+    </site>
+  </distributionManagement>
 </project>
