@@ -27,6 +27,7 @@ pipeline {
 	stage('Build') {
         
         steps {
+		sh "mvn -Dmaven.test.failure.ignore=true clean package"
             script {
 			
 				if("${params.DEPLOY_ENV}"!="DEV"){
@@ -43,13 +44,18 @@ pipeline {
 				}
             }
         }
-    }		
+    }
+	stage('Code Analysis') {
+                steps {
+                  
+                    sh "sonar:sonar -Dsonar.host.url=http://18.191.139.84:9000 -DskipTests=true"
+               
+                }
+              }	 
         stage('Install') {
             steps {
                 
                 echo 'Testing..'
-                echo 'env var, ${ENV_NAME}'
-                 echo "${ENV_NAME}"
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
