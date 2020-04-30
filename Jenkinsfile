@@ -47,7 +47,7 @@ pipeline {
     }
 	stage('Code Analysis') {
                 steps {
-                  
+                    echo 'Code Analysis...'
                     sh "sonar:sonar -Dsonar.host.url=http://18.191.139.84:9000 -DskipTests=true"
                
                 }
