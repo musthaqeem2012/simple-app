@@ -1,41 +1,66 @@
+#!/usr/bin/env groovy
 pipeline {
+    environment {
+    ENV_NAME = "${env.ENV_NAME}"
+}
+
+ parameters {
+    string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
+    choice(choices: ['DEV', 'STAGING', 'PRODUCTION'], description: 'Select field for target environment', name: 'DEPLOY_ENV')
+    }
     agent any
-    tools {
-        maven 'maven3'
-    }
-    options {
-        buildDiscarder logRotator(daysToKeepStr: '5', numToKeepStr: '7')
-    }
-    stages{
-        stage('Build'){
-            steps{
-                 sh script: 'mvn clean package'
-                 archiveArtifacts artifacts: 'target/*.war', onlyIfSuccessful: true
+
+    stages {
+        stage('Scm') {
+            steps {
+                echo 'Building..'
+				
+				
+                sh 'mvn --version'
+                 git 'https://github.com/musthaqeem2012/simple-app.git'
+
+                 
             }
         }
-        stage('Upload War To Nexus'){
-            steps{
-                script{
-
-                    def mavenPom = readMavenPom file: 'pom.xml'
-                    def nexusRepoName = mavenPom.version.endsWith("SNAPSHOT") ? "simpleapp-snapshot" : "simpleapp-release"
-                    nexusArtifactUploader artifacts: [
-                        [
-                            artifactId: 'simple-app', 
-                            classifier: '', 
-                            file: "target/simple-app-${mavenPom.version}.war", 
-                            type: 'war'
-                        ]
-                    ], 
-                    credentialsId: 'nexus3', 
-                    groupId: 'in.javahome', 
-                    nexusUrl: '172.31.15.204:8081', 
-                    nexusVersion: 'nexus3', 
-                    protocol: 'http', 
-                    repository: nexusRepoName, 
-                    version: "${mavenPom.version}"
-                    }
+       
+		
+	stage('Build') {
+        
+        steps {
+            script {
+			
+				if("${params.DEPLOY_ENV}"!="DEV"){
+					def IS_APPROVED = input(
+						message: "Approve release?",
+						parameters: [
+							string(name: 'IS_APPROVED', defaultValue: 'y', description: 'Deploy to master?')
+						]
+					)
+					if (IS_APPROVED != 'y') {
+						currentBuild.result = "ABORTED"
+						error "User cancelled"
+					}
+				}
+            }
+        }
+    }		
+        stage('Install') {
+            steps {
+                
+                echo 'Testing..'
+                echo 'env var, ${ENV_NAME}'
+                 echo "${ENV_NAME}"
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+                sh "mvn -Dmaven.test.failure.ignore=true clean package deploy -X"
+                
+                nexusArtifactUploader artifacts: [[artifactId: 'simple-app', classifier: '', file: 'target/simple-app-3.0.1-SNAPSHOT.war', type: 'war']], credentialsId: '266f833e-91af-4353-8e9e-4911c96f6658', groupId: 'in.javahome', nexusUrl: '3.133.158.171:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'SAMPLE-SNAP', version: '3.0.1-SNAPSHOT'
             }
         }
     }
 }
+
