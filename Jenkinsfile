@@ -67,6 +67,18 @@ stage('SonarQube analysis') {
                 nexusArtifactUploader artifacts: [[artifactId: 'simple-app', classifier: '', file: 'target/simple-app-3.0.1-SNAPSHOT.war', type: 'war']], credentialsId: '266f833e-91af-4353-8e9e-4911c96f6658', groupId: 'in.javahome', nexusUrl: '18.218.103.65:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'SAMPLE-SNAP', version: '3.0.1-SNAPSHOT'
             }
         }
+	    
+        stage('Deploy to Dev') {
+            steps {
+                echo 'Deploying....'
+                
+                
+                sh "wget http://18.218.103.65:8081/repository/SAMPLE-SNAP/in/javahome/simple-app/3.0.1-SNAPSHOT/simple-app-3.0.1-20200426.091358-1.war"
+		    
+		echo 'Deployed Successfully'
+            }
+        }	    
+	    
     }
 }
 
