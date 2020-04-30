@@ -72,7 +72,7 @@ stage('SonarQube analysis') {
             steps {
                 echo 'Deploying....'
                 
-                
+                sh "pwd"
                 sh "wget http://18.218.103.65:8081/repository/SAMPLE-SNAP/in/javahome/simple-app/3.0.1-SNAPSHOT/simple-app-3.0.1-20200426.091358-1.war"
 		    
 		echo 'Deployed Successfully'
