@@ -40,7 +40,9 @@ echo ${urlpath}
 echo ${groupId}
 echo "my ts ends"
 buildnumber=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//buildNumber)" -`
-wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}-${timestamp}-${buildnumber}.${type}"
+#wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}-${timestamp}-${buildnumber}.${type}"
+wget --no-check-certificate "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}-${timestamp}-${buildnumber}.${type}" -O ${filename}
  else
-wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}${classifier}.${type}"                                                                            
+#wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}${classifier}.${type}"                                                                            
+wget --no-check-certificate "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}-${timestamp}-${buildnumber}.${type}" -O ${filename}
 fi
