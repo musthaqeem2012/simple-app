@@ -1,6 +1,6 @@
 #!/bin/sh
 
-groupId="in.javahome"
+groupId="in/javahome"
 artifactId="sample-app"
 version="3.0.1-SNAPSHOT"
 nexusUser="admin"
@@ -29,8 +29,8 @@ if [[ "${version}" == "LATEST" || "${version}" == *SNAPSHOT* ]] ; then
 if [[ "${version}" == "LATEST" ]] ; then
 version=$(xmllint --xpath "string(//latest)" <(curl -s "${base}/${groupIdUrl}/${artifactId}/maven-metadata.xml"))
 fi
-timestamp=`curl -u ${nexusUser}:${password} -s "http://18.218.231.147:8081/repository/SAMPLE-SNAP/in/javahome/simple-app/3.0.1-SNAPSHOT/maven-metadata.xml" | xmllint --xpath "string(//timestamp)" -`
-#timestamp=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//timestamp)" -`
+#timestamp=`curl -u ${nexusUser}:${password} -s "http://18.218.231.147:8081/repository/SAMPLE-SNAP/in/javahome/simple-app/3.0.1-SNAPSHOT/maven-metadata.xml" | xmllint --xpath "string(//timestamp)" -`
+timestamp=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//timestamp)" -`
 echo "my ts"
 echo ${timestamp}
 echo "my ts ends"
