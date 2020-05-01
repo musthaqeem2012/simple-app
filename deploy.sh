@@ -27,7 +27,7 @@ if [[ $repo_type == "releases" ]]
    wget --no-check-certificate "${repo}/repository/releases/${groupIdUrl}/${artifactId}/${version}/${artifactId}-${version}.${type}" -O ${filename} -k
  else
   # versionTimestamped=$(wget -q -O- --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/maven-metadata.xml" | grep -m 1 \ | sed -e 's/\(.*\)<\/value>/\1/' | sed -e 's/ //g')
-  versionTimestamped=$(wget -O- --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/maven-metadata.xml" | grep timestamp)
+  versionTimestamped=$(wget -q -O- --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/maven-metadata.xml" | grep timestamp)
   echo "my version starts"
    echo ${versionTimestamped}
    echo "my version ends"
