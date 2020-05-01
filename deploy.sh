@@ -25,12 +25,15 @@ password="admin123"
 
 filename="${artifactId}-${version}${classifier}.${type}"
 
-#if [[ "${version}" == "LATEST" || "${version}" == *SNAPSHOT* ]] ; then
-#if [[ "${version}" == "LATEST" ]] ; then
-#version=$(xmllint --xpath "string(//latest)" <(curl -s "${base}/${groupIdUrl}/${artifactId}/maven-metadata.xml"))
-#fi
-timestamp=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//timestamp)" -`
+if [[ "${version}" == "LATEST" || "${version}" == *SNAPSHOT* ]] ; then
+if [[ "${version}" == "LATEST" ]] ; then
+version=$(xmllint --xpath "string(//latest)" <(curl -s "${base}/${groupIdUrl}/${artifactId}/maven-metadata.xml"))
+fi
+timestamp=`curl -u ${nexusUser}:${password} -s "http://18.218.231.147:8081/repository/SAMPLE-SNAP/in/javahome/simple-app/3.0.1-SNAPSHOT/maven-metadata.xml" | xmllint --xpath "string(//timestamp)" -`
+#timestamp=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//timestamp)" -`
+echo "my ts"
 echo ${timestamp}
+echo "my ts ends"
 buildnumber=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//buildNumber)" -`
 wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${version%- 
 SNAPSHOT}-${timestamp}-${buildnumber}.${type}"
