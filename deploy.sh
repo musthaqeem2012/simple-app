@@ -4,6 +4,7 @@ groupId="in/javahome"
 artifactId="simple-app"
 version="3.0.1-SNAPSHOT"
 nexusUser="admin"
+actualversion="3.0.1"
 
 classifier=""
 type="war"
@@ -39,8 +40,7 @@ echo ${urlpath}
 echo ${groupId}
 echo "my ts ends"
 buildnumber=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//buildNumber)" -`
-wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${version%- 
-SNAPSHOT}-${timestamp}-${buildnumber}.${type}"
+wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}-${timestamp}-${buildnumber}.${type}"
  else
-wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${version}${classifier}.${type}"                                                                            
+wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}${classifier}.${type}"                                                                            
 fi
