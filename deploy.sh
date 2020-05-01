@@ -6,15 +6,15 @@ artifactId=$2
 version=$3
 
 # optional
-classifier=$4
+#classifier=$4
 type=$5
 
 if [[ $type == "" ]]; then
   type="jar"
 fi
-if [[ $classifier != "" ]]; then
-  classifier="-${classifier}"
-fi
+#if [[ $classifier != "" ]]; then
+ # classifier="-${classifier}"
+#fi
 
 groupIdUrl="${groupId//.//}"
 #filename="${artifactId}-${version}${classifier}.${type}"
