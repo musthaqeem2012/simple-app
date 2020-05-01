@@ -1,6 +1,6 @@
 #!/bin/sh
 
-groupId="in/javahome"
+groupId="in///javahome"
 artifactId="sample-app"
 version="3.0.1-SNAPSHOT"
 nexusUser="admin"
@@ -32,7 +32,7 @@ fi
 #timestamp=`curl -u ${nexusUser}:${password} -s "http://18.218.231.147:8081/repository/SAMPLE-SNAP/in/javahome/simple-app/3.0.1-SNAPSHOT/maven-metadata.xml" | xmllint --xpath "string(//timestamp)" -`
 timestamp=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//timestamp)" -`
 echo "my ts"
-echo ${timestamp}
+echo ${groupId}
 echo "my ts ends"
 buildnumber=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//buildNumber)" -`
 wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${version%- 
