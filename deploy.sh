@@ -29,7 +29,7 @@ if [[ $repo_type == "releases" ]]
    versionTimestamped=$(wget -q -O- --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/maven-metadata.xml" | grep -m 1 \ | sed -e 's/\(.*\)<\/value>/\1/' | sed -e 's/ //g')
    #versionTimestamped=$(wget -q -O- --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/maven-metadata.xml" | grep 'timestamp')
    echo ${versionTimestamped}
-   versionTimestamped1 = Regex.Replace(${versionTimestamped}, @"[^0-9]+", "")
+   versionTimestamped1 = ${versionTimestamped}.replaceall("-","") 
      echo ${versionTimestamped1}    
    wget --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/${artifactId}-${versionTimestamped}.${type}" -O ${filename}
  fi
