@@ -45,6 +45,13 @@ pipeline {
             }
         }
     }
+	     stage('UnitTest') {
+            steps {
+                
+                echo 'Unit Testig..'
+                sh "mvn -Dmaven.test.failure.ignore=true Test"
+            }
+        }
 stage('SonarQube analysis') {
 	steps {
    withSonarQubeEnv('sonarqube') {
@@ -52,13 +59,7 @@ stage('SonarQube analysis') {
               }
   } 
 }
-        stage('Install') {
-            steps {
-                
-                echo 'Installing..'
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
-            }
-        }
+       
         stage('Artifact Upload') {
             steps {
                 echo 'Deploying....'
