@@ -18,10 +18,10 @@ classifier="-${classifier}"
 fi
 
 # Read Password
-echo -n Please enter password for user ${nexusUser}:
-read -s password
-echo
-password=$password
+#echo -n Please enter password for user ${nexusUser}:
+#read -s password
+#echo
+password="admin123"
 
 filename="${artifactId}-${version}${classifier}.${type}"
 
