@@ -1,7 +1,7 @@
 #!/bin/sh
 
 groupId="in/javahome"
-artifactId="sample-app"
+artifactId="simple-app"
 version="3.0.1-SNAPSHOT"
 nexusUser="admin"
 
