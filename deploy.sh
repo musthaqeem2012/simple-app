@@ -25,11 +25,12 @@ password="admin123"
 
 filename="${artifactId}-${version}${classifier}.${type}"
 
-if [[ "${version}" == "LATEST" || "${version}" == *SNAPSHOT* ]] ; then
-if [[ "${version}" == "LATEST" ]] ; then
-version=$(xmllint --xpath "string(//latest)" <(curl -s "${base}/${groupIdUrl}/${artifactId}/maven-metadata.xml"))
-fi
+#if [[ "${version}" == "LATEST" || "${version}" == *SNAPSHOT* ]] ; then
+#if [[ "${version}" == "LATEST" ]] ; then
+#version=$(xmllint --xpath "string(//latest)" <(curl -s "${base}/${groupIdUrl}/${artifactId}/maven-metadata.xml"))
+#fi
 timestamp=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//timestamp)" -`
+echo ${timestamp}
 buildnumber=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//buildNumber)" -`
 wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${version%- 
 SNAPSHOT}-${timestamp}-${buildnumber}.${type}"
