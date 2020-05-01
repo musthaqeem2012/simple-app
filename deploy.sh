@@ -24,17 +24,29 @@ if [[ ${version} == *"SNAPSHOT"* ]]; then repo_type="snapshots"; else repo_type=
 
 if [[ $repo_type == "releases" ]]
  then
-   wget --no-check-certificate "${repo}/repository/releases/${groupIdUrl}/${artifactId}/${version}/${artifactId}-${version}${classifier}.${type}" -O ${filename} -k
+   wget --no-check-certificate "${repo}/repository/releases/${groupIdUrl}/${artifactId}/${version}/${artifactId}-${version}.${type}" -O ${filename} -k
  else
-   versionTimestamped=$(wget -q -O- --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/maven-metadata.xml" | grep -m 1 \ | sed -e 's/\(.*\)<\/value>/\1/' | sed -e 's/ //g')
-   #versionTimestamped=$(wget -q -O- --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/maven-metadata.xml" | grep 'timestamp')
+  # versionTimestamped=$(wget -q -O- --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/maven-metadata.xml" | grep -m 1 \ | sed -e 's/\(.*\)<\/value>/\1/' | sed -e 's/ //g')
+  versionTimestamped=$(wget -q -O- --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/maven-metadata.xml" | grep timestamp)
    echo ${versionTimestamped}
    #versionTimestamped1 = ${versionTimestamped}.replaceall("-","") 
    #  echo ${versionTimestamped1}  
    
-txtdash="-"
+
+find="-"
 replace=""
- echo ${versionTimestamped//$txtdash/$replace}   
-   wget --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/${artifactId}-${versionTimestamped}.${type}" -O ${filename}
+
+result=${versionTimestamped//$find/$replace}
+find=":"
+replace=""
+
+result=${result//$find/$replace}
+
+find=" "
+replace="."
+
+result=${result//$find/$replace}
+
+   wget --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/${artifactId}-${result}.${type}" -O ${filename}
  fi
 
