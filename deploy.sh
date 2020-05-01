@@ -1,54 +1,38 @@
 #!/bin/sh
 
-repo="http://18.218.231.147:8081"
-groupId=$1
-artifactId=$2
-version=$3
+groupId="in.javahome"
+artifactId="sample-app"
+version="3.0.1-SNAPSHOT"
+nexusUser="admin"
 
-# optional
-#classifier=$4
-type=$4
+classifier=""
+type="war"
 
-if [[ $type == "" ]]; then
-  type="jar"
+nexusUser="admin"
+repo="SAMPLE-SNAP"                                                                                                                                                                                                                              
+# Nexus 3
+base="http://18.218.231.147::8081/repository/${repo}"
+
+if [[ $classifier != "" ]]; then
+classifier="-${classifier}"
 fi
-#if [[ $classifier != "" ]]; then
- # classifier="-${classifier}"
-#fi
 
-groupIdUrl="${groupId//.//}"
-#filename="${artifactId}-${version}${classifier}.${type}"
-filename="${artifactId}-${version}.${type}"
+# Read Password
+echo -n Please enter password for user ${nexusUser}:
+read -s password
+echo
+password=$password
 
-if [[ ${version} == *"SNAPSHOT"* ]]; then repo_type="snapshots"; else repo_type="releases"; fi
+filename="${artifactId}-${version}${classifier}.${type}"
 
-if [[ $repo_type == "releases" ]]
- then
-   wget --no-check-certificate "${repo}/repository/releases/${groupIdUrl}/${artifactId}/${version}/${artifactId}-${version}.${type}" -O ${filename} -k
+if [[ "${version}" == "LATEST" || "${version}" == *SNAPSHOT* ]] ; then
+if [[ "${version}" == "LATEST" ]] ; then
+version=$(xmllint --xpath "string(//latest)" <(curl -s "${base}/${groupIdUrl}/${artifactId}/maven-metadata.xml"))
+fi
+timestamp=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//timestamp)" -`
+buildnumber=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactId}/${version}/maven-metadata.xml" | xmllint --xpath "string(//buildNumber)" -`
+wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${version%- 
+SNAPSHOT}-${timestamp}-${buildnumber}.${type}"
  else
-  # versionTimestamped=$(wget -q -O- --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/maven-metadata.xml" | grep -m 1 \ | sed -e 's/\(.*\)<\/value>/\1/' | sed -e 's/ //g')
-  versionTimestamped=$(wget --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/maven-metadata.xml" | grep timestamp)
-  echo "my version starts"
-   echo ${versionTimestamped}
-   echo "my version ends"
-   #versionTimestamped1 = ${versionTimestamped}.replaceall("-","") 
-   #  echo ${versionTimestamped1}  
-   
-
-find="-"
-replace=""
-
-result=${versionTimestamped//$find/$replace}
-find=":"
-replace=""
-
-result=${result//$find/$replace}
-
-find=" "
-replace="."
-
-result=${result//$find/$replace}
-
-   wget --no-check-certificate "${repo}/repository/SAMPLE-SNAP/${groupIdUrl}/${artifactId}/${version}/${artifactId}-${result}.${type}" -O ${filename}
- fi
-
+wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${version}${classifier}.${type}"                                                                            
+fi
