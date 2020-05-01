@@ -1,6 +1,6 @@
 #!/bin/sh
 
-repo="http://18.218.231.147:8081/"
+repo="http://18.218.231.147:8081"
 groupId=$1
 artifactId=$2
 version=$3
