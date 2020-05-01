@@ -49,7 +49,7 @@ pipeline {
             steps {
                 
                 echo 'Unit Testig..'
-                sh "mvn -Dmaven.test.failure.ignore=true Test"
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
 stage('SonarQube analysis') {
