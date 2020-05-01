@@ -75,9 +75,9 @@ stage('SonarQube analysis') {
                 //sh "deploy.sh"
 		    
                 sh "pwd"
-		    sh "bash ./deploy.sh" 
+		    //sh "bash ./deploy.sh" 
                 //sh "wget http://18.218.231.147:8081/repository/SAMPLE-SNAP/in/javahome/simple-app/3.0.1-SNAPSHOT/simple-app-3.0.1-20200426.091358-1.war"
-		 sh "./deploy.sh in.javahome sample-app 3.0.1-SNAPSHOT war"  
+		 sh "bash ./deploy.sh in.javahome sample-app 3.0.1-SNAPSHOT war"  
 		    
 		echo 'Deployed Successfully'
             }
