@@ -78,7 +78,7 @@ stage('SonarQube analysis') {
 		    //sh "bash ./deploy.sh" 
                 //sh "wget http://18.218.231.147:8081/repository/SAMPLE-SNAP/in/javahome/simple-app/3.0.1-SNAPSHOT/simple-app-3.0.1-20200426.091358-1.war"
 		 sh "bash ./deploy.sh"  
-		    
+		  sh "bash ./sanity.sh"  
 		echo 'Deployed Successfully'
             }
         }	    
