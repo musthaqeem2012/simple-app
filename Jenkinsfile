@@ -65,7 +65,7 @@ stage('SonarQube analysis') {
                 echo 'Deploying....'
                 sh "mvn -Dmaven.test.failure.ignore=true clean package deploy -X"
                 
-                nexusArtifactUploader artifacts: [[artifactId: 'simple-app', classifier: '', file: 'target/simple-app-3.0.1-SNAPSHOT.war', type: 'war']], credentialsId: '266f833e-91af-4353-8e9e-4911c96f6658', groupId: 'in.javahome', nexusUrl: '18.218.231.147:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'SAMPLE-SNAP', version: '3.0.1-SNAPSHOT'
+                nexusArtifactUploader artifacts: [[artifactId: 'simple-app', classifier: '', file: 'target/simple-app-3.0.1-SNAPSHOT.war', type: 'war']], credentialsId: '266f833e-91af-4353-8e9e-4911c96f6658', groupId: 'in.javahome', nexusUrl: '3.135.207.159:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'SAMPLE-SNAP', version: '3.0.1-SNAPSHOT'
             }
         }
 	    
