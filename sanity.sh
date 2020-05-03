@@ -1,19 +1,15 @@
 #!/bin/bash
 
-$1= "http://3.23.59.104:8090/simple-app-3.0.1-SNAPSHOT"
+varurl= "http://3.23.59.104:8090/simple-app-3.0.1-SNAPSHOT"
 
-if [ -z "$1" ]
-then
-    echo "usage: sanity.sh http://www.example.com"
-    exit 1
-fi
+
 
 #curl -A 'Mozilla/4.05 [en] (X11; U; Linux 2.0.32 i586)' --location http://www.example.com
 
 #status=`curl -i --silent --head $1 | head -1 | cut -f 2 -d' '`
 #status = `curl -I -s -L http://www.example.com | grep "HTTP/1.1" | cut -f 2 -d' '`
 
-status=$(curl -I -s -L $1 | grep "HTTP/1.1" | cut -f 2 -d' ')
+status=$(curl -I -s -L ${varurl} | grep "HTTP/1.1" | cut -f 2 -d' ')
 echo "status was : '${status}'"
  if [ $status -eq 200 ]; then
 	echo "Smoke Test completed successfully"
@@ -34,4 +30,4 @@ then
 fi
 
 #put the xml version of the page into a file
-curl --silent $1 > reports/smoke.xml
+#curl --silent $1 > reports/smoke.xml
