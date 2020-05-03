@@ -43,7 +43,7 @@ buildnumber=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactI
 #wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}-${timestamp}-${buildnumber}.${type}"
 wget --no-check-certificate "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}-${timestamp}-${buildnumber}.${type}" -O ${filename}
 #wget --no-check-certificate "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}-${timestamp}-${buildnumber}.${type}" -O ${filename}
-cp "${filename}" /opt/apache-tomcat-8.0.9/webapps/
+sudo cp "${filename}" /opt/apache-tomcat-8.0.9/webapps/
 
  else
 #wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}${classifier}.${type}"                                                                            
