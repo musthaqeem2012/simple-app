@@ -1,5 +1,6 @@
 #!/bin/bash
 
+$1= "http://3.23.59.104:8090/simple-app-3.0.1-SNAPSHOT"
 
 if [ -z "$1" ]
 then
