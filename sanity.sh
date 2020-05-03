@@ -1,10 +1,10 @@
 #!/bin/bash
 
-if [ -z "$1" ]
-then
-    echo "usage: sanity.sh <url>"
-    exit 1
-fi
+#if [ -z "$1" ]
+#then
+    #echo "usage: sanity.sh http://www.example.com"
+    #exit 1
+#fi
 
 curl -A 'Mozilla/4.05 [en] (X11; U; Linux 2.0.32 i586)' --location http://www.example.com
 
