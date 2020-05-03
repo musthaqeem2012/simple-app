@@ -1,6 +1,6 @@
 #!/bin/bash
 
-varurl= "http://10.0.0.57:8090/simple-app-3.0.1-SNAPSHOT/"
+varurl= "http://3.135.194.173:8080/simple-app-3.0.1-SNAPSHOT/"
 
 
 
