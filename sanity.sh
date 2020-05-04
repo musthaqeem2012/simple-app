@@ -1,7 +1,7 @@
 #!/bin/bash
 
-varurl= "http://3.135.194.173:8080/simple-app-3.0.1-SNAPSHOT/"
-
+#varurl= "http://3.135.194.173:8080/simple-app-3.0.1-SNAPSHOT/"
+varurl="https://www.example.com"
 
 
 #curl -A 'Mozilla/4.05 [en] (X11; U; Linux 2.0.32 i586)' --location http://www.example.com
