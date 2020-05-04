@@ -9,7 +9,7 @@ varurl="https://www.example.com/"
 #status=`curl -i --silent --head $1 | head -1 | cut -f 2 -d' '`
 #status = `curl -I -s -L http://www.example.com | grep "HTTP/1.1" | cut -f 2 -d' '`
 
-status=$(curl -I -s -L ${varurl} | grep "HTTP/1.1" | cut -f 2 -d' ')
+status=$(curl -I -s -L ${varurl} | grep "HTTP/2" | cut -f 2 -d' ')
 echo "status was : '${status}'"
  if [ $status -eq 200 ]; then
 	echo "Smoke Test completed successfully"
