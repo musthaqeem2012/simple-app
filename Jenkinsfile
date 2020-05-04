@@ -5,7 +5,7 @@ pipeline {
 }
 
  parameters {
-    string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
+    //string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
     choice(choices: ['DEV', 'STAGING', 'PRODUCTION'], description: 'Select field for target environment', name: 'DEPLOY_ENV')
     }
     agent any
@@ -34,7 +34,7 @@ pipeline {
 					def IS_APPROVED = input(
 						message: "Approve release?",
 						parameters: [
-							string(name: 'IS_APPROVED', defaultValue: 'y', description: 'Deploy to master?')
+							string(name: 'IS_APPROVED', defaultValue: 'y', description: 'Deploy to Staging/Production?')
 						]
 					)
 					if (IS_APPROVED != 'y') {
@@ -45,12 +45,16 @@ pipeline {
             }
         }
     }
-	     stage('UnitTest') {
-            steps {
-                
-                echo 'Unit Testig..'
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+	     stage('Unit Test') { 
+            	steps {
+                sh 'mvn test' 
             }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml' 
+                }
+            }
+        }
         }
 stage('SonarQube analysis') {
 	steps {
@@ -84,6 +88,16 @@ stage('SonarQube analysis') {
             }
         }	    
 	    
+	 stage('Smoke Test') {
+            steps {
+                echo 'Smoke Test....Start'
+                	    
+                sh "pwd"
+		      
+		sh "bash ./sanity.sh"
+		echo 'Smoke Test Run Successfully'
+            }
+        }	    
     }
 }
 
