@@ -11,7 +11,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Scm') {
+       /*stage('Scm') {
             steps {
                 echo 'Building..'
 				
@@ -21,7 +21,7 @@ pipeline {
 
                  
             }
-        }
+        }*/
        
 		
 	stage('Build') {
