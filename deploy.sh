@@ -12,7 +12,7 @@ type="war"
 nexusUser="admin"
 repo="SAMPLE-SNAP"                                                                                                                                                                                                                              
 # Nexus 3
-base="http://18.188.36.93:8081/repository/${repo}"
+base="http://3.133.140.158:8081/repository/${repo}"
 
 if [[ $classifier != "" ]]; then
 classifier="-${classifier}"
@@ -44,7 +44,7 @@ buildnumber=`curl -u ${nexusUser}:${password} -s "${base}/${groupId}/${artifactI
 wget --no-check-certificate "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}-${timestamp}-${buildnumber}.${type}" -O ${filename}
 #wget --no-check-certificate "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}-${timestamp}-${buildnumber}.${type}" -O ${filename}
 #chmod 777 /opt/apache-tomcat-8.0.9/webapps/ -R
-cp -r "${filename}" /opt/tomcat/apache-tomcat-8.0.9/webapps/
+cp -r "${filename}" /opt/apache-tomcat-8.0.9/webapps/
 
  else
 #wget --user ${nexusUser} --password ${password} -P /nexus/artifacts "${base}/${groupId}/${artifactId}/${version}/${artifactId}-${actualversion}${classifier}.${type}"                                                                            
