@@ -12,7 +12,7 @@ type="war"
 nexusUser="admin"
 repo="SAMPLE-SNAP"                                                                                                                                                                                                                              
 # Nexus 3
-base="http://3.133.140.158:8081/repository/${repo}"
+base="http://3.135.206.21:8081/repository/${repo}"
 
 if [[ $classifier != "" ]]; then
 classifier="-${classifier}"
