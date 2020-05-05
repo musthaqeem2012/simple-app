@@ -76,6 +76,7 @@ stage('SonarQube analysis') {
 	    
         stage('Deploy to Dev') {
             steps {
+		     script {
 		      if (currentBuild.result == null || currentBuild.result == 'SUCCESS') {
                 echo 'Deploying....'
              	    
@@ -87,6 +88,7 @@ stage('SonarQube analysis') {
 		
 		echo 'Deployed Successfully'
             }
+		     }
 	    }
         }	    
 	    
