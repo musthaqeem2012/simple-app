@@ -30,4 +30,4 @@ then
 fi
 
 #put the xml version of the page into a file
-#curl --silent $1 > reports/smoke.xml
+curl --silent ${varurl} > reports/smoke.xml
