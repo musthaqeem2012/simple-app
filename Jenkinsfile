@@ -48,7 +48,7 @@ pipeline {
 	     stage('Unit Test') { 
             	steps {
                 sh 'mvn test' 
-	        echo ' juni test running...'
+	       
             }
             post {
                 always {
