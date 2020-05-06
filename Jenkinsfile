@@ -9,8 +9,9 @@ pipeline {
     choice(choices: ['DEV', 'STAGING', 'PRODUCTION'], description: 'Select field for target environment', name: 'DEPLOY_ENV')
     }
     agent any
-
+	
     stages {
+	    
        /*stage('Scm') {
             steps {
                 echo 'Building..'
@@ -25,7 +26,9 @@ pipeline {
        
 		
 	stage('Build') {
-        
+        when {
+                branch 'Integration'
+           	 }	
         steps {
 		sh "mvn -Dmaven.test.failure.ignore=true clean package"
             script {
