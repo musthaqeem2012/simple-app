@@ -57,7 +57,7 @@ pipeline {
             }
         }
         
-stage('SonarQube analysis') {
+/*stage('SonarQube analysis') {
 	steps {
    withSonarQubeEnv('sonarqube') {
                  sh 'mvn clean package sonar:sonar'
@@ -101,7 +101,7 @@ stage('SonarQube analysis') {
 		sh "bash ./sanity.sh"
 		echo 'Smoke Test Run Successfully'
             }
-        }	    
+        }*/	    
     }
 }
 
