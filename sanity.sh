@@ -1,7 +1,8 @@
 #!/bin/bash
 
 #varurl= "http://3.135.194.173:8080/simple-app-3.0.1-SNAPSHOT/"
-varurl="https://www.example.com/"
+#varurl="https://www.example.com/"
+varurl="http://18.189.195.217:8080/simple-app-3.0.1-20200504.094854-154/"
 
 
 #curl -A 'Mozilla/4.05 [en] (X11; U; Linux 2.0.32 i586)' --location http://www.example.com
@@ -9,7 +10,7 @@ varurl="https://www.example.com/"
 #status=`curl -i --silent --head $1 | head -1 | cut -f 2 -d' '`
 #status = `curl -I -s -L http://www.example.com | grep "HTTP/1.1" | cut -f 2 -d' '`
 
-status=$(curl -I -s -L ${varurl} | grep "HTTP/2" | cut -f 2 -d' ')
+status=$(curl -I -s -L ${varurl} | grep "HTTP/1.1" | cut -f 2 -d' ')
 echo "status was : '${status}'"
  if [ $status -eq 200 ]; then
 	echo "Smoke Test Completed successfully"
