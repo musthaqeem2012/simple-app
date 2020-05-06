@@ -2,7 +2,7 @@
 
 #varurl= "http://3.135.194.173:8080/simple-app-3.0.1-SNAPSHOT/"
 #varurl="https://www.example.com/"
-varurl="http://18.189.195.217:8080/simple-app-3.0.1-20200504.094854-154/"
+varurl="http://18.219.25.38:8080/simple-app-3.0.1-20200504.094854-154/"
 
 
 #curl -A 'Mozilla/4.05 [en] (X11; U; Linux 2.0.32 i586)' --location http://www.example.com
