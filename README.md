@@ -1,3 +1,3 @@
 # simple-ap
 
-Testing multibranch scenario with different branch
+Testing multibranch scenario 
