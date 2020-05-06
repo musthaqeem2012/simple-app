@@ -14,7 +14,7 @@ pipeline {
        /*stage('Scm') {
             steps {
                 echo 'Building..'
-			echo 'Test...'	
+		
 				
                 sh 'mvn --version'
                  git 'https://github.com/musthaqeem2012/simple-app.git'
