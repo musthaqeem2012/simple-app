@@ -1,0 +1,40 @@
+/* Hello World in Groovy */
+
+
+import java.sql.*; 
+import groovy.sql.Sql
+ 
+
+Properties props = new Properties()
+
+File propsFile = new File('test.properties')
+props.load(propsFile.newDataInputStream())
+String sEnvType="QA"
+String sDBURL
+String sDBUname
+String sDBPwd
+String sDBDriver
+if(sEnvType=="QA")
+{
+ sDBURL=props.getProperty('db.QADBURL')
+ sDBUname=props.getProperty('db.QADBUname')
+ sDBPwd=props.getProperty('db.QADBPwd')
+ sDBDriver=props.getProperty('db.QADBDriver') 
+}
+else
+{
+    sDBURL=props.getProperty('db.DevDBURL')
+ sDBUname=props.getProperty('db.DevDBUname')
+ sDBPwd=props.getProperty('db.DevDBPwd')
+ sDBDriver=props.getProperty('db.DevDBDriver')  
+}
+      // Creating a connection to the database
+      def sql = Sql.newInstance(sDBUrl,sDBUname, 
+         sDBPwd, sDBDriver)  
+			
+      sql.eachRow('select * from employee') {
+         tp -> 
+         println([tp.FIRST_NAME,tp.LAST_NAME,tp.age,tp.sex,tp.INCOME])
+      }  
+		
+      sql.close()
