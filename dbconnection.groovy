@@ -25,6 +25,7 @@ else
  sDBPwd=props.getProperty('db.DevDBPwd')
  sDBDriver=props.getProperty('db.DevDBDriver')  
 }
+	println("Im inside groovy")
 	/*
       // Creating a connection to the database
       def sql = Sql.newInstance(sDBUrl,sDBUname, 
