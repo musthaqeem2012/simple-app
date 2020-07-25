@@ -26,6 +26,7 @@ pipeline {
 		steps {
 			script {
 	     def dbInvokeMethod = load 'dbconnection.groovy'
+			
 	     dbInvokeMethod.GetDBDetails()
 				echo "Hi"
 			}
