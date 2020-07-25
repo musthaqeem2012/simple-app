@@ -1,6 +1,6 @@
 import java.sql.*; 
 import groovy.sql.Sql
- import java.util.Properties
+
 def GetDBDetails() {
 def props = new Properties()
 
