@@ -3,6 +3,7 @@ import java.io.File*;
 import java.sql.*; 
 import groovy.sql.Sql;
 def GetDBDetails() {
+	println("inside")
 def props = new Properties()
 
 File propsFile = new File('dbprop.properties')
