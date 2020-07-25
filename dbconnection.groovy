@@ -1,5 +1,5 @@
 
-import java.io.*;
+import java.io.File*;
 
 def GetDBDetails() {
 def props = new Properties()
