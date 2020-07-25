@@ -22,7 +22,12 @@ pipeline {
                  
             }
         }*/
-       
+	    stage('ConnectDB') {
+
+	     def dbInvokeMethod = load("dbconnection.groovy")
+	     dbInvokeMethod.GetDBDetails()
+	    }
+	    
 		
 	stage('Build') {
         
