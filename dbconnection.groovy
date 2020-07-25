@@ -25,6 +25,7 @@ else
  sDBPwd=props.getProperty('db.DevDBPwd')
  sDBDriver=props.getProperty('db.DevDBDriver')  
 }
+	/*
       // Creating a connection to the database
       def sql = Sql.newInstance(sDBUrl,sDBUname, 
          sDBPwd, sDBDriver)  
@@ -35,5 +36,6 @@ else
       }  
 		
       sql.close()
+      */
    }
 return this
