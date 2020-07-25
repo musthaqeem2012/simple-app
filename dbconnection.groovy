@@ -1,13 +1,10 @@
-/* Hello World in Groovy */
-
-
 import java.sql.*; 
 import groovy.sql.Sql
  
 def GetDBDetails() {
 Properties props = new Properties()
 
-File propsFile = new File('test.properties')
+File propsFile = new File('dbprop.properties')
 props.load(propsFile.newDataInputStream())
 String sEnvType="QA"
 String sDBURL
@@ -23,7 +20,7 @@ if(sEnvType=="QA")
 }
 else
 {
-    sDBURL=props.getProperty('db.DevDBURL')
+ sDBURL=props.getProperty('db.DevDBURL')
  sDBUname=props.getProperty('db.DevDBUname')
  sDBPwd=props.getProperty('db.DevDBPwd')
  sDBDriver=props.getProperty('db.DevDBDriver')  
