@@ -4,8 +4,7 @@
 import java.sql.*; 
 import groovy.sql.Sql
  
-class FileExample {
-   static void main(String[] args) {
+def GetDBDetails() {
 Properties props = new Properties()
 
 File propsFile = new File('test.properties')
@@ -40,3 +39,4 @@ else
 		
       sql.close()
    }
+return this
