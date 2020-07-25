@@ -26,9 +26,9 @@ pipeline {
 		steps {
 			script {
 				echo "inside load"
-	     def dbInvokeMethod = load 'dbconnection.groovy'
+	    // def dbInvokeMethod = load 'dbconnection.groovy'
 			
-	     dbInvokeMethod.GetDBDetails()
+	   //  dbInvokeMethod.GetDBDetails()
 				echo "Hi"
 			}
 		}
