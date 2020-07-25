@@ -2,7 +2,7 @@ import java.sql.*;
 import groovy.sql.Sql
  import java.util.Properties
 def GetDBDetails() {
-Properties props = new Properties()
+def props = new Properties()
 
 File propsFile = new File('dbprop.properties')
 props.load(propsFile.newDataInputStream())
