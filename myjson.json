@@ -1,0 +1,9 @@
+{
+    "TESTS": 
+    [
+         {
+              "MEMBER_ID": "my name",
+              "MEMBER_ADDRESS": "foobarbaz",
+         }
+    ]
+}
