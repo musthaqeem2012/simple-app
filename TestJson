@@ -1,0 +1,77 @@
+import groovy.json.JsonSlurperClassic
+import jenkins.model.Jenkins
+
+
+import groovy.util.XmlSlurper
+import java.util.Map
+import jenkins.*
+import jenkins.model.*
+import hudson.*
+import hudson.model.*    
+
+
+
+import groovy.json.JsonSlurper
+List<String> artifacts = new ArrayList<String>()
+try {
+   artifacts.add("MYITEN1")
+
+
+
+//get Jenkins instance
+    def jenkins = Jenkins.instance
+//get job Item
+    def item = jenkins.getItemByFullName("Test_Json")
+artifacts.add(item)
+   // println item
+// get workspacePath for the job Item
+    def workspacePath = jenkins.getWorkspaceFor (item)
+artifacts.add(workspacePath )
+
+// def myfile = new File(workspacePath.toString()+"//var//myjson.json")
+//artifacts.add(myfile.text)
+  //  println workspacePath
+/*
+artifacts.add(readFileFromWorkspace("myjson.json"))
+  artifacts.add("MYITEN222")
+def mywsfile = readFileFromWorkspace("myjson.json")
+artifacts.add(mywsfile.text)
+*/
+/* def artifactsUrl = "var/myjson.json" */
+def user="katpaa"
+def pass="”
+def url="/var/myjson.json"
+def url1=("curl -u ${user}:${pass} ${url}").execute().text
+artifacts.add(url1)
+//def artifactsJsonObject = new JsonSlurper().parseText(artifactsUrl.text)
+/*def artifactsObjectRaw = ["curl", "-s", "-H", "accept: application/json", "Authorization:Bearer {service-account-credential}", "-k", "--url", "${artifactsUrl}"].execute().text
+artifacts.add(artifactsObjectRaw)
+    artifacts.add("MYITEN2")*/
+                def jsonSlurper = new JsonSlurper()
+   def artifactsJsonObject = jsonSlurper.parseText(url1)
+//artifacts.add(artifactsObjectRaw)
+
+def dataArray = artifactsJsonObject.data
+    for(myitem in artifactsJsonObject){
+                artifacts.add("MYITEN3")
+        //if (myitem.isMetadata== false)
+        artifacts.add(myitem)
+    }
+                //artifacts.add(artifactsObjectRaw)
+                
+                
+                //def url = new URL("/var/myjson.json")
+
+                        //def parsedJSON = new groovy.json.JsonSlurperClassic().parseText(url.getText())
+       artifacts.add("MYITEN5")                 
+                //artifacts.add(parsedJSON)
+                }
+                
+                catch(Exception e)
+                {
+                artifacts.add(e.toString())
+                
+                }
+//artifacts.add(${WORKSPACE})
+                artifacts.add("MYITEN")
+    return artifacts          
